@@ -1,0 +1,66 @@
+// Collection Agency
+{
+    "_id" : "59e137defb97f4166c2b5707",
+    "username" : "psvturismo",
+    "password" : "$2a$10$arroYMaCxPsd.mXaCuIGneSzPpNM2YzG8KXo1.H6fmugb7RAtOTtK",
+    "fantasyName" : "PSV Turismo",
+    "email" : "psvturismo@psv.com.br",
+    "cnpj": "00000-000000-00-0",
+    "socialName" : "psv turismo",
+    "address": {
+        "street": "Rua passandu",
+        "number": 32
+    },
+    "contact": {
+        "phone": ["995925448", "997218907"]
+    },
+    "attachedDocument": {
+        "img": {
+            "cnpj": "Buffer"
+        }
+    }  
+}
+// Operation Collection
+{
+    "_id" : "59e137defb97f4166c2b5707",
+    "dataFligth": {
+        "issueData": "10/12/2017",
+        "namePassagers": "Luiz Henrique Soares",
+        "dataFligth": "11/12/2017",
+        "stretch": "REC - ROMA",
+        "CIA":"AZUL",
+        "finder": "666",
+    },
+    "purchaseData": {
+        "holder": "Vinicius Botelho",
+        "program": "Azul",
+        "purchaseOrder": "Credit Card",
+        "punctuation": 300000,
+        "valueEveryMiles": 26,
+        "shippingValue": 266.00,
+        "creditCard": 4444,
+        "finder": "OAE-39"
+    },
+    "saleInformation": {
+        "agency": "PSV Turismo",
+        "salesValueEveryMiles": 30,
+        "amount": 2500.00,
+        "status": "Pago"
+    }
+}
+
+// Informaçao Dados Reserva
+{
+    "dateFlight": "11/10/2017",
+    "namePassagers": "Luiz Henriquen Soares",
+    "stretch": "REC - ROMA",
+    "CIA":"AZUL",
+    "purchasePrice": "R$3.000.00",
+    "finder": "666",
+    "attachedTicker":{
+        "img": {
+            "data": "Buffer"
+        }
+    },
+    "status": "Finalizado"
+}

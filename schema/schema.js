@@ -1,8 +1,10 @@
 const graphql = require('graphql');
+const {GraphQLSchema} = graphql;
 const axios = require('axios');
 
 const { GraphQLObjectType, 
-        GraphQLString, GraphQLInt, GraphQLSchema, GraphQLList } = graphql;
+        GraphQLString, GraphQLNonNull, GraphQLInt, GraphQLList } = graphql;
+
 
 const CompanyType = new GraphQLObjectType({
     name: "Company",
@@ -38,10 +40,50 @@ const UserType = new GraphQLObjectType({
 });
 
 
+const mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addUser: {
+            type: UserType ,
+            args: {
+                firstName: {type: new GraphQLNonNull(GraphQLString)},
+                age: {type: new GraphQLNonNull(GraphQLInt)},
+                company: {type: GraphQLString}
+            },
+            resolve(parentValue, {firstName, age}) {
+                return axios.post('http://localhost:3000/users', {firstName, age})
+                .then(res => res.data);
+            }
+      },
+         deleteUser: {
+            type: UserType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLInt) }
+            },
+                resolve(parentValue, {id}) {
+                    return axios.delete(`http://localhost:3000/users/${id}`)
+                    .then(res => res.data)
+                }
+            }
+        },
+        editUser: {
+            type: UserType, 
+            args: {
+                id: {type: new GraphQLNonNull(GraphQLInt)},
+                firstName: {type: new GraphQLNonNull(GraphQLString)},
+                age: {type: new GraphQLNonNull(GraphQLInt)}
+            },
+            resolve(parentValue,args) {
+                return axios.patch(`http://localhost:3000/users/${id}`, args)
+                .then(res => res.data);
+            }
+        }    
+});
+
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
-        user: {
+        user: { 
             type: UserType,
             args: {id: {type: GraphQLString} },
             resolve(parentValue, args) {
@@ -61,5 +103,6 @@ const RootQuery = new GraphQLObjectType({
 });
 
 module.exports = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation
 });
